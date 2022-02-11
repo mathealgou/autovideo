@@ -2,9 +2,10 @@ import os
 import sys
 from scraper import scrape
 from scraper import search
+from terminal import *
 
 # A little introduction
-print("Autovideo 1.0")
+introduction("Autovideo", "1.0")
 
 # for testing's sake
 #print(search("bacon"))
@@ -25,7 +26,3 @@ elif answer.lower() == "n":
     print("Please try again.")
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-# Future code
-# url = input("Enter a Wikipedia URL: ")
-
-# scrape(url)
