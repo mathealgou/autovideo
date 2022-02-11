@@ -10,7 +10,7 @@ def scrape(url):
     result = []
     for p in ps:
         result.append(p.text)
-    
+
     result = clean_text(result)
 
     return result
