@@ -1,9 +1,11 @@
 from scraper import scrape
+from scraper import search
 
+# A little introduction
 print("Autovideo 1.0")
 
 # for testing's sake
-print(scrape("https://en.wikipedia.org/wiki/Bacon"))
+print(search("Bacon"))
 
 
 # Future code
