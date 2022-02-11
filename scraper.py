@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import terminal as terminal
 
 def scrape(url):
     response = requests.get(url)
@@ -17,8 +18,7 @@ def scrape(url):
 
 def clean_text(text):
     if type(text) is list:
-        # DEBUG LINE
-        print("is list")
+        terminal.debug("is list")
         
         result = []
 
@@ -32,7 +32,7 @@ def clean_text(text):
         return result
     elif type(text) is str:
         # DEBUG LINE
-        print("is not list")
+        terminal.debug("is not list")
         result = re.sub("[\(\[].*?[\)\]]", "", t)
         return result
     else:

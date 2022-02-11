@@ -1,6 +1,6 @@
-from terminal import * 
+import terminal as terminal
 
 # A little introduction
-introduction("Autovideo", "1.0")
+terminal.introduction("Autovideo", "1.0")
 
-article = search_article()
+article = terminal.search_article()

@@ -1,3 +1,4 @@
+from time import sleep
 from scraper import *
 import os
 import sys
@@ -14,23 +15,39 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def introduction(name, version, creator="Matheus Goulart"):
-    print(f"{bcolors.OKGREEN}Autovideo {version} by {creator}{bcolors.ENDC}")
+    print(f"{bcolors.OKGREEN}{name} {version} by {creator}{bcolors.ENDC}")
 
 def search_article():
-    print("Enter a search term:")
+    ask("Enter a search term:")
     term = input()
-    print(f"Searching for {term}...")
+    ask(f"Searching for {term}...")
     article = search(term)
-    print(article[1])
-    print("Is this the article you were looking for?")
+    print(article[0])
+    ask("Is this the article you were looking for? (y/n)")
     answer = input()
     if answer.lower() == "y":
         os.system('cls' if os.name == 'nt' else 'clear')
-        print("Great!")
+        statement("Great!")
         #Procced to do the video
         return article
     elif answer.lower() == "n":
         #Clear the terminal and restart the program
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("Please try again.")
-        os.execl(sys.executable, sys.executable, *sys.argv)
+        clear()
+        ask("Please try again.")
+        sleep(1)
+        restart()
+
+def debug(string):
+    print(f"DEBUG: {bcolors.WARNING}{string}{bcolors.ENDC}")
+
+def ask(string):
+    print(f"{bcolors.OKCYAN}{string}{bcolors.ENDC}")
+
+def statement(string):
+    print(f"{bcolors.OKGREEN}{string}{bcolors.ENDC}")
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def restart():
+    os.execl(sys.executable, sys.executable, *sys.argv)
