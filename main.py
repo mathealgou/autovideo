@@ -5,7 +5,7 @@ from scraper import search
 print("Autovideo 1.0")
 
 # for testing's sake
-print(search("Bacon"))
+print(search("bacon"))
 
 
 # Future code
