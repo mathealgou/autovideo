@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import terminal as terminal
+import os
+from dotenv import load_dotenv
 
 def scrape(url):
     response = requests.get(url)
@@ -43,3 +45,42 @@ def search(term):
     url = f"https://en.wikipedia.org/wiki/{term}"
     return scrape(url)
 
+def get_images(term):
+    load_dotenv()
+    KEY = os.getenv("GOOGLE_IMAGES_KEY")
+    ID = os.getenv("GOOGLE_IMAGES_ID")
+    print(KEY, ID)
+    from google_images_search import GoogleImagesSearch
+
+    # you can provide API key and CX using arguments,
+    # or you can set environment variables: GCS_DEVELOPER_KEY, GCS_CX
+    gis = GoogleImagesSearch(KEY, ID)
+
+    # define search params:
+    _search_params = {
+        'q': term,
+        'num': 10,
+        #'safe': 'high|medium|off',
+        #'fileType': 'jpg|gif|png',
+        #'imgType': 'clipart|face|lineart|news|photo',
+        #imgSize': 'huge|icon|large|medium|small|xlarge|xxlarge',
+        #'imgDominantColor': 'black|blue|brown|gray|green|orange|pink|purple|red|teal|white|yellow',
+        #'imgColorType': 'color|gray|mono|trans',
+        #'rights': 'cc_publicdomain|cc_attribute|cc_sharealike|cc_noncommercial|cc_nonderived'
+    }
+
+    # this will only search for images:
+    # gis.search(search_params=_search_params)
+
+    # this will search and download:
+    gis.search(search_params=_search_params, path_to_dir='./')
+
+    # this will search, download and resize:
+    # gis.search(search_params=_search_params, path_to_dir='/path/', width=500, height=500)
+
+    # search first, then download and resize afterwards:
+    # gis.search(search_params=_search_params)
+    # for image in gis.results():
+    #     image.download('./')
+    #     image.resize(500, 500)
+get_images("cat")

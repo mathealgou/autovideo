@@ -1,3 +1,15 @@
 __pycache__
 .env
 *.avi
+*.mp4
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mpg
+*.mpeg
+*.mov
+*.wmv
+*.flv

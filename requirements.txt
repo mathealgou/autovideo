@@ -3,3 +3,6 @@ html5lib
 requests
 re
 cv2
+dotenv
+Google-Images-Search
+python-dotenv

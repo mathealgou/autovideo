@@ -22,4 +22,4 @@ def render(width, height, FPS, seconds, filename):
     #Once the loop is done, release the video writer and close the file.
     video.release()
 
-render(1280, 720, 24, 20, "test")
+#render(1280, 720, 24, 20, "test")
