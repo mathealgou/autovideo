@@ -1,3 +1,5 @@
 beautifulsoup4
 html5lib
 requests
+re
+cv2
