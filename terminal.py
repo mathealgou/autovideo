@@ -49,6 +49,9 @@ def statement(string):
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def error(string):
+    print(f"ERROR: {bcolors.FAIL}{string}{bcolors.ENDC}")
+
 def restart():
     os.execl(sys.executable, sys.executable, *sys.argv)
 
