@@ -65,3 +65,4 @@ def get_images(term):
 
     # this will search and download:
     gis.search(search_params=_search_params, path_to_dir='./images', custom_image_name="image")
+# get_images("cat")

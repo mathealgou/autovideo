@@ -7,7 +7,7 @@ terminal.introduction("Autovideo", "1.0")
 article = terminal.search_article()
 
 terminal.debug("Rendering video...")
-video.render(720, 1280, 24, 20, "bacon")
+video.render(720, 1280, 24, 20, "bacon", article)
 
 
 terminal.statement("Done!")
