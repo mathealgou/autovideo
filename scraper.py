@@ -29,7 +29,7 @@ def clean_text(text):
             if type(t) != str:
                 return f"Error: clean_text() cannot clean text of type {type(t)}"
             else:
-                t = t.replace("\n", "")
+                # t = t.replace("\n", "")
                 if t.strip() != "":
                     result.append(re.sub("[\[].*?[\]]", "", t))
         return result
