@@ -10,23 +10,22 @@ from cv2 import VideoWriter, VideoWriter_fourcc
 # This is the function that will be called by the main file.
 def render(width: int, height: int, FPS: int, seconds: float, filename: str, article: List[dict]):
 
+    terminal.clear()
+    terminal.statement("Rendering video...")
+
     # Define the codec and create VideoWriter object
     fourcc = VideoWriter_fourcc(*'XVID')
     video = VideoWriter(f"./{filename}.avi", fourcc, float(FPS), (width, height))
 
-    print(article)
-
     for paragraph in article:
         text = paragraph["text"]
 
-        text_with_newlines = textwrap.wrap(text, width=30)
 
-        # text_with_newlines = '\n'.join(text[i:i+30] for i in range(0, len(text), 30))
+        # TODO - Move this to the article parser
+        text_with_newlines = textwrap.wrap(text, width=30)
 
         duration = int(paragraph["duration"])
 
-
-        print(text_with_newlines)
         # For every frame of video
         for _ in range(FPS*duration):
 
@@ -34,13 +33,13 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
             frame = np.zeros((height, width, 3), np.uint8)
 
             # Do stuff with the video (text, images, etc.)
-            # cv.putText(frame, text, (0, int(height / 2)), cv.FONT_HERSHEY_SIMPLEX, 1, (200, 200, 200), 2)
-
+            
+            # Define initial vertical offset for the positioning of the text,
+            # and the increment on the offset for each line.
             y0, dy = 50, 30
-            # for i, line in enumerate(text_with_newlines.split('\n')):
-            for i, line in enumerate(text_with_newlines):
 
-                print(line)
+            # cv.putText does not support newlines, so we have to do it manually.
+            for i, line in enumerate(text_with_newlines):
                 y = y0 + i*dy
                 cv.putText(frame, line, (0, y), cv.FONT_HERSHEY_SIMPLEX, 1, (200, 200, 200), 2)
 
@@ -50,5 +49,4 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
     #Once the loop is done, release the video writer and close the file.
     video.release()
 
-    
-# render(1280, 720, 24, 20, "test", ["test", "test2"])
+    terminal.clear()

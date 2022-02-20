@@ -16,6 +16,4 @@ print(parsed_article)
 
 video.render(720, 1280, 24, 20, "bacon", parsed_article)
 
-terminal.clear()
-
 terminal.statement("Done!")
