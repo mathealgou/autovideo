@@ -8,8 +8,6 @@ terminal.introduction("Autovideo", "1.0")
 
 article = terminal.search_article()
 
-terminal.debug("Rendering video...")
-
 parsed_article = parse_article(article)
 
 video.render(720, 1280, 24, 20, "bacon", parsed_article)
