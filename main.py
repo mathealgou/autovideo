@@ -12,8 +12,6 @@ terminal.debug("Rendering video...")
 
 parsed_article = parse_article(article)
 
-print(parsed_article)
-
 video.render(720, 1280, 24, 20, "bacon", parsed_article)
 
 terminal.statement("Done!")
