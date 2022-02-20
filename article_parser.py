@@ -34,16 +34,17 @@ def find_relevant_words(words: List[str]):
 def parse_article(article: List[str]):
     parsed_article = []
     paragraph = article[0]
-    words = paragraph.split(" ")
-    relevant_words = find_relevant_words(words)
-    duration = len(words) / 20
-    parsed_paragraph = {
-        "text": paragraph,
-        "duration": duration,
-        "words": words,
-        "images": []
-    }
-    parsed_article.append(parsed_paragraph)
+    for paragraph in article:
+        words = paragraph.split(" ")
+        relevant_words = find_relevant_words(words)
+        duration = len(words) / 20
+        parsed_paragraph = {
+            "text": paragraph,
+            "duration": duration,
+            "words": words,
+            "images": []
+        }
+        parsed_article.append(parsed_paragraph)
 
     return parsed_article
 
