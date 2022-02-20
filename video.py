@@ -1,3 +1,4 @@
+import textwrap
 from typing import List
 import terminal as terminal
 import cv2 as cv
@@ -18,7 +19,9 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
     for paragraph in article:
         text = paragraph["text"]
 
-        text_with_newlines = '\n'.join(text[i:i+30] for i in range(0, len(text), 30))
+        text_with_newlines = textwrap.wrap(text, width=30)
+
+        # text_with_newlines = '\n'.join(text[i:i+30] for i in range(0, len(text), 30))
 
         duration = int(paragraph["duration"])
 
@@ -33,8 +36,10 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
             # Do stuff with the video (text, images, etc.)
             # cv.putText(frame, text, (0, int(height / 2)), cv.FONT_HERSHEY_SIMPLEX, 1, (200, 200, 200), 2)
 
-            y0, dy = 50, 20
-            for i, line in enumerate(text_with_newlines.split('\n')):
+            y0, dy = 50, 30
+            # for i, line in enumerate(text_with_newlines.split('\n')):
+            for i, line in enumerate(text_with_newlines):
+
                 print(line)
                 y = y0 + i*dy
                 cv.putText(frame, line, (0, y), cv.FONT_HERSHEY_SIMPLEX, 1, (200, 200, 200), 2)
