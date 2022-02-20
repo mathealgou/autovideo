@@ -21,7 +21,6 @@ def scrape(url):
 
 def clean_text(text):
     if type(text) is list:
-        terminal.debug("is list")
         
         result = []
 
@@ -34,8 +33,6 @@ def clean_text(text):
                     result.append(re.sub("[\[].*?[\]]", "", t))
         return result
     elif type(text) is str:
-        # DEBUG LINE
-        terminal.debug("is not list")
         result = re.sub("[\(\[].*?[\)\]]", "", t)
         return result
     else:
