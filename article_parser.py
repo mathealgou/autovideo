@@ -47,5 +47,3 @@ def parse_article(article: List[str]):
         parsed_article.append(parsed_paragraph)
 
     return parsed_article
-
-    #  
