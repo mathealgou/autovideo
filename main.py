@@ -10,6 +10,10 @@ article = terminal.search_article()
 
 parsed_article = parse_article(article)
 
-video.render(720, 1280, 24, 20, "bacon", parsed_article)
+# Ask for custom filename
+terminal.ask("Enter a filename:")
+filename = input()
+
+video.render(720, 1280, 24, 20, filename, parsed_article)
 
 terminal.statement("Done!")
