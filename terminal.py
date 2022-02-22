@@ -55,3 +55,22 @@ def error(string):
 def restart():
     os.execl(sys.executable, sys.executable, *sys.argv)
 
+def progress(done, total, length=20, string="", fill="█", empty=" "):
+
+    # Calculate the percentage
+    percent = (done / total) * 100
+
+    # round to int
+    percent = int(percent)
+
+    # Calculate the amount of "hashes"
+    hashes = fill * int(percent / 100 * length)
+
+    # Calculate the amount of spaces
+    spaces = empty * (length - len(hashes))
+
+    # Print the progress bar
+
+    print(f"|\r{hashes}{spaces}| {percent}%", end="")
+
+    print(f"{bcolors.OKBLUE}{string}{bcolors.ENDC}")
