@@ -34,7 +34,7 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
         # For every frame of video
         for _ in range(FPS*duration):
             terminal.clear()
-            terminal.statement("Rendering video...")
+            terminal.statement(f"Rendering {filename}...")
             terminal.statement(f"{rendered_frames}/{total_frames} frames rendered")
 
             # Create a black background, which serves as the canvas.
@@ -56,6 +56,8 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
 
             rendered_frames += 1
 
+
+            
     #Once the loop is done, release the video writer and close the file.
     video.release()
 
