@@ -36,7 +36,7 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
             terminal.clear()
             terminal.statement(f"Rendering {filename}...")
             terminal.statement(f"{rendered_frames}/{total_frames} frames rendered")
-            terminal.progress(rendered_frames, total_frames, length=200)
+            terminal.progress(rendered_frames, total_frames, length=80)
 
             # Create a black background, which serves as the canvas.
             frame = np.zeros((height, width, 3), np.uint8)
