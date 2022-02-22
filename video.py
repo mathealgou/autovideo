@@ -1,4 +1,5 @@
 import textwrap
+import time
 from typing import List
 import terminal as terminal
 import cv2 as cv
@@ -8,7 +9,7 @@ from cv2 import VideoWriter, VideoWriter_fourcc
 
 
 # This is the function that will be called by the main file.
-def render(width: int, height: int, FPS: int, seconds: float, filename: str, article: List[dict]):
+def render(width: int, height: int, FPS: float, seconds: float, filename: str, article: List[dict]):
 
 
     # Define the codec and create VideoWriter object
@@ -19,9 +20,8 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
     total_frames = 0
     rendered_frames = 0
     for paragraph in article:
-        total_frames += int(paragraph["duration"] * FPS)
+        total_frames += paragraph["duration"] * FPS
     
-
     for paragraph in article:
         text = paragraph["text"]
 
@@ -29,13 +29,14 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
         # TODO - Move this to the article parser
         text_with_newlines = textwrap.wrap(text, width=30)
 
-        duration = int(paragraph["duration"])        
+        duration = paragraph["duration"]     
 
         # For every frame of video
-        for _ in range(FPS*duration):
+        for _ in range(int(FPS*duration)):
             terminal.clear()
             terminal.statement(f"Rendering {filename}...")
             terminal.statement(f"{rendered_frames}/{total_frames} frames rendered")
+            terminal.progress(rendered_frames, total_frames, length=200)
 
             # Create a black background, which serves as the canvas.
             frame = np.zeros((height, width, 3), np.uint8)
@@ -57,7 +58,6 @@ def render(width: int, height: int, FPS: int, seconds: float, filename: str, art
             rendered_frames += 1
 
 
-            
     #Once the loop is done, release the video writer and close the file.
     video.release()
 
