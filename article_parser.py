@@ -37,7 +37,7 @@ def parse_article(article: List[str]):
     for paragraph in article:
         words = paragraph.split(" ")
         relevant_words = find_relevant_words(words)
-        duration = len(words) / 20
+        duration = int(len(words) / 50) + 1
         parsed_paragraph = {
             "text": paragraph,
             "duration": duration,
