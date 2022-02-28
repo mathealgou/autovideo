@@ -17,10 +17,7 @@ class bcolors:
 def introduction(name, version, creator="Matheus Goulart"):
     print(f"{bcolors.OKGREEN}{name} {version} by {creator}{bcolors.ENDC}")
 
-def search_article():
-    ask("Enter a search term:")
-    term = input()
-    ask(f"Searching for {term}...")
+def search_article(term):
     article = search(term)
     print(article[0])
     ask("Is this the article you were looking for? (y/n)")
