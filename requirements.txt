@@ -1,8 +1,6 @@
 beautifulsoup4
 html5lib
 requests
-re
-cv2
-dotenv
+python-dotenv
 Google-Images-Search
 python-dotenv
