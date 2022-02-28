@@ -6,7 +6,15 @@ from article_parser import parse_article
 # A little introduction
 terminal.introduction("Autovideo", "1.0")
 
-article = terminal.search_article()
+
+
+terminal.ask("Enter a search term:")
+
+term = input()
+
+terminal.ask(f"Searching for {term}...")
+
+article = terminal.search_article(term)
 
 parsed_article = parse_article(article)
 
