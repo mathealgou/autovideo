@@ -1,5 +1,4 @@
 import textwrap
-import time
 from typing import List
 import terminal as terminal
 import cv2 as cv
