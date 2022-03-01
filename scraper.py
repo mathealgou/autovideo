@@ -5,6 +5,7 @@ import terminal as terminal
 import os
 from dotenv import load_dotenv
 
+
 def scrape(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html5lib")
@@ -21,7 +22,7 @@ def scrape(url):
 
 def clean_text(text):
     if type(text) is list:
-        
+
         result = []
 
         for t in text:
@@ -38,12 +39,14 @@ def clean_text(text):
     else:
         return f"Error: clean_text() cannot clean data of type{type(text)}"
 
+
 def search(term):
-    #I'm not sure if this is the best way to do this
+    # I'm not sure if this is the best way to do this
     url = f"https://en.wikipedia.org/wiki/{term}"
     return scrape(url)
 
-def get_images(term):
+
+def get_images(term, filename):
     load_dotenv()
     KEY = os.getenv("GOOGLE_IMAGES_KEY")
     ID = os.getenv("GOOGLE_IMAGES_ID")
@@ -56,10 +59,11 @@ def get_images(term):
     # define search params:
     _search_params = {
         'q': term,
-        'num': 2,
+        'num': 1,
         'safe': 'high'
     }
 
     # this will search and download:
-    gis.search(search_params=_search_params, path_to_dir='./images', custom_image_name="image")
+    gis.search(search_params=_search_params,
+               path_to_dir='./images', custom_image_name=filename)
 # get_images("cat")
