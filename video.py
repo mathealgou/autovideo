@@ -19,10 +19,12 @@ def scale_image(img, width, height):
         ratio = width/img_width
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
         return img
+
     elif img_height < height and img_width > width:
         ratio = height/img_height
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
         return img
+
     else:
         ratio = max(height/img_height, width/img_width)
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
