@@ -6,7 +6,37 @@ import numpy as np
 from cv2 import VideoWriter, VideoWriter_fourcc
 
 
-# This is the function that will be called by the main file.
+def scale_image(img, width, height):
+    img_height, img_width = img.shape[:2]
+
+    if img_height > height and img_width > width:
+        # crop the image from center
+        img = img[int(img_height/2 - height/2):int(img_height/2 + height/2),
+                  int(img_width/2 - width/2):int(img_width/2 + width/2)]
+        return img
+
+    elif img_height > height and img_width < width:
+        ratio = width/img_width
+        img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
+        return img
+    elif img_height < height and img_width > width:
+        ratio = height/img_height
+        img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
+        return img
+    else:
+        ratio = max(height/img_height, width/img_width)
+        img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
+        return img
+
+
+def crop_image(img, width, height):
+    # crop the image from center
+    img_height, img_width = img.shape[:2]
+    img = img[int(img_height/2 - height/2):int(img_height/2 + height/2),
+              int(img_width/2 - width/2):int(img_width/2 + width/2)]
+    return img
+
+
 def render(width: int, height: int, FPS: float, seconds: float, filename: str, article: List[dict]):
 
     # Define the codec and create VideoWriter object
@@ -43,8 +73,10 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
 
             img = cv.imread(f"./images/{filename}.jpg")
 
-            # Resize the image to fit the screen
-            img = cv.resize(img, (width, height))
+            # Resize the image be be bigger than the canvas in order to crop it
+            img = scale_image(img, width, height)
+            # Crop the image to be the same size as the canvas
+            img = crop_image(img, width, height)
 
             # Add the image to the canvas
             frame[0:height, 0:width] = img
