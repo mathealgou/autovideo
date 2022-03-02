@@ -96,7 +96,7 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
 
             rendered_frames += 1
 
-            # Once the loop is done, release the video writer and close the file.
+    # Once the loop is done, release the video writer and close the file.
     video.release()
 
     terminal.clear()
