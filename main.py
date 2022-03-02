@@ -6,21 +6,20 @@ import scraper
 # A little introduction
 terminal.introduction("Autovideo", "1.0")
 
-
 terminal.ask("Enter a search term:")
 
-term = input()
+term: str = input()
 
 terminal.ask(f"Searching for {term}...")
 
-article = terminal.search_article(term)
+article: list[str] = terminal.search_article(term)
 
-parsed_article = parse_article(article)
+parsed_article: list[dict] = parse_article(article)
 
 # Ask for custom filename
 terminal.ask("Enter a filename:")
 
-filename = input()
+filename: str = input()
 
 terminal.statement("Downloading images...")
 
