@@ -58,6 +58,15 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
 
         duration = paragraph["duration"]
 
+        # Read the image file
+        img = cv.imread(f"./images/{filename}.jpg")
+
+        # Resize the image be be bigger than the canvas in order to crop it
+        img = scale_image(img, width, height)
+
+        # Crop the image to be the same size as the canvas
+        img = crop_image(img, width, height)
+
         # For every frame of video
         for _ in range(int(FPS*duration)):
             terminal.clear()
@@ -68,15 +77,6 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
 
             # Create a black background, which serves as the canvas.
             frame = np.zeros((height, width, 3), np.uint8)
-
-            # Do stuff with the video (text, images, etc.)
-
-            img = cv.imread(f"./images/{filename}.jpg")
-
-            # Resize the image be be bigger than the canvas in order to crop it
-            img = scale_image(img, width, height)
-            # Crop the image to be the same size as the canvas
-            img = crop_image(img, width, height)
 
             # Add the image to the canvas
             frame[0:height, 0:width] = img
