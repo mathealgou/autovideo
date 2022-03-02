@@ -10,25 +10,23 @@ def scale_image(img, width, height):
     img_height, img_width = img.shape[:2]
 
     if img_height > height and img_width > width:
-        # crop the image from center
-        img = img[int(img_height/2 - height/2):int(img_height/2 + height/2),
-                  int(img_width/2 - width/2):int(img_width/2 + width/2)]
-        return img
+        return crop_image(img, width, height)
 
     elif img_height > height and img_width < width:
         ratio = width/img_width
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
-        return img
+        return crop_image(img, width, height)
 
     elif img_height < height and img_width > width:
         ratio = height/img_height
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
-        return img
+        return crop_image(img, width, height)
 
     else:
+        # Calculate which ratio is smaller, and resize the image accordingly
         ratio = max(height/img_height, width/img_width)
         img = cv.resize(img, (int(img_width*ratio), int(img_height*ratio)))
-        return img
+        return crop_image(img, width, height)
 
 
 def crop_image(img, width, height):
@@ -65,9 +63,6 @@ def render(width: int, height: int, FPS: float, seconds: float, filename: str, a
 
         # Resize the image be be bigger than the canvas in order to crop it
         img = scale_image(img, width, height)
-
-        # Crop the image to be the same size as the canvas
-        img = crop_image(img, width, height)
 
         # For every frame of video
         for _ in range(int(FPS*duration)):
