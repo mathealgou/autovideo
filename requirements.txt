@@ -1,7 +1,6 @@
 beautifulsoup4
 html5lib
 requests
-python-dotenv
 Google-Images-Search
 python-dotenv
 opencv-python
