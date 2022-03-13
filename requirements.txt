@@ -4,3 +4,5 @@ requests
 python-dotenv
 Google-Images-Search
 python-dotenv
+opencv-python
+windows-curses
